@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Pixel ID — Digital Studio</title>
+
+    <style>
+        /* ===== БАЗА ===== */
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            color: #e6e6ff;
+
+            background: linear-gradient(
+                270deg,
+                #07000f,
+                #12002a,
+                #1a003d,
+                #12002a,
+                #07000f
+            );
+            background-size: 600% 600%;
+            animation: bgMove 20s ease infinite;
+        }
+
+        @keyframes bgMove {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===== НЕОНОВИЙ ТЕКСТ (ЖИВИЙ) ===== */
+        .neon {
+            color: #c7b8ff;
+            text-shadow:
+                0 0 4px rgba(180,160,255,0.4),
+                0 0 10px rgba(120,90,255,0.3);
+
+            animation: neonPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                text-shadow:
+                    0 0 4px rgba(180,160,255,0.4),
+                    0 0 10px rgba(120,90,255,0.3);
+            }
+            50% {
+                text-shadow:
+                    0 0 8px rgba(200,180,255,0.7),
+                    0 0 18px rgba(140,110,255,0.6);
+            }
+            100% {
+                text-shadow:
+                    0 0 4px rgba(180,160,255,0.4),
+                    0 0 10px rgba(120,90,255,0.3);
+            }
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #d4d4ff;
+            margin-bottom: 30px;
+        }
+
+        /* ===== КНОПКИ ===== */
+        button {
+            background: transparent;
+            color: #cbbcff;
+            border: 1.5px solid rgba(191,167,255,0.6);
+            padding: 12px 22px;
+            margin: 6px;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+
+            box-shadow:
+                0 0 6px rgba(124,92,255,0.25),
+                inset 0 0 6px rgba(124,92,255,0.15);
+
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            color: #ffffff;
+            border-color: #bfa7ff;
+
+            box-shadow:
+                0 0 10px rgba(124,92,255,0.5),
+                inset 0 0 10px rgba(124,92,255,0.25);
+        }
+
+        /* ===== ВИВІД ===== */
+        #output {
+            margin-top: 30px;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+
+            text-shadow:
+                0 0 4px rgba(124,92,255,0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="neon">Pixel ID</h1>
+    <h2>Digital Studio • Арти • Аватарки • Веб</h2>
+
+    <button data-action="services">Послуги</button>
+    <button data-action="schedule">Графік роботи</button>
+    <button data-action="prices">Ціни</button>
+    <button data-action="contacts">Контакти</button>
+
+    <button data-action="Про нас">Про нас</button>
+    <button data-action="Кількість створених робіт">Кількість робіт</button>
+
+
+    <p id="output"></p>
+
+<script>
+    const buttons = document.querySelectorAll("button[data-action]");
+    const output = document.getElementById("output");
+
+    buttons.forEach(btn => {
+        btn.onclick = () => {
+            output.style.opacity = 0;
+
+            setTimeout(() => {
+                switch (btn.dataset.action) {
+
+                    case "services":
+                        output.innerText =
+                            "Ми створюємо арти, аватарки, банери, відеомонтаж та базові сайти.";
+                        break;
+
+                    case "schedule":
+                        output.innerText =
+                            "Понеділок – Пʼятниця | 12:30 – 18:30";
+                        break;
+
+                    case "prices":
+                        output.innerText =
+                            "Більшість послуг безкоштовні. Складні проєкти — за домовленістю.";
+                        break;
+
+                    case "contacts":
+                        output.innerText =
+                            "Телефон: +380 93 248 51 00 | Telegram: @RomanceplanetFan";
+                        break;
+
+                    case "Про нас":
+                        output.innerText =
+                            "Ми — команда професіоналів. Створюємо арти, аватарки та 3D-роботи.";
+                        break;
+
+                    case "Кількість створених робіт":
+                        output.innerText =
+                            "На сьогодні ми створили 3 роботи. За сьогодні — 2.";
+                        break;
+                }
+
+                output.style.opacity = 1;
+            }, 150);
+        };
+    });
+</script>
+
+
+</body>
+</html>
